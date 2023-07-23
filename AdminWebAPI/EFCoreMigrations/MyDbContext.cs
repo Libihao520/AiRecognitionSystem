@@ -7,6 +7,8 @@ public class MyDbContext : DbContext
 {
     public DbSet<Users> Users { get; set; }
 
+    public DbSet<DeskTops> DeskTops { get; set; }
+
     //注入方式配置
     public MyDbContext(DbContextOptions<MyDbContext> options) : base(options)
     {
