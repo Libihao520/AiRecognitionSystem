@@ -7,10 +7,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="SqlSugarCore" Version="5.0.8.9" />
-    </ItemGroup>
-
-    <ItemGroup>
       <Folder Include="Dto" />
     </ItemGroup>
 

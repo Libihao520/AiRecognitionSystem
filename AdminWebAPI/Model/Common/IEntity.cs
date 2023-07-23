@@ -1,6 +1,6 @@
-﻿using SqlSugar;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,37 +12,37 @@ namespace Model.Common
         /// <summary>
         /// 描述
         /// </summary>
-        [SugarColumn(IsNullable = true)]
+        [Required]
         public string Description { get; set; }
 
         /// <summary>
         /// 创建人Id
         /// </summary>
-        [SugarColumn(IsNullable = false)]
+        [Required]
         public long CreateUserId { get; set; }
 
         /// <summary>
         /// 创建日期
         /// </summary>
-        [SugarColumn(IsNullable = false)]
+        [Required]
         public DateTime CreateDate { get; set; }
 
         /// <summary>
         /// 修改人Id
         /// </summary>
-        [SugarColumn(IsNullable = true)]
-        public long ModifyUserId { get; set; }
+
+        public long? ModifyUserId { get; set; }
 
         /// <summary>
         /// 修改日期
         /// </summary>
-        [SugarColumn(IsNullable = true)]
+
         public DateTime? ModifyDate { get; set; }
 
         /// <summary>
         /// 是否删除
         /// </summary>
-        [SugarColumn(IsNullable = false)]
+        [Required]
         public int IsDeleted { get; set; }
     }
 }

@@ -17,22 +17,21 @@ public class LoginController:ControllerBase
         _jwtService = jwtService;
     }
     [HttpGet]
-    public async Task<OkResult> GetToken(string name, string password)
+    public async Task<ApiResult> GetToken(string name, string password)
     {
-        // var res = Task.Run(() =>
-        // {
-        //     if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(password))
-        //     {
-        //         return ResultHelper.Error("参数不能为空");
-        //     }
-        //     var user = _userService.GetUser(name, password);
-        //     if (string.IsNullOrEmpty(user.Name))
-        //     {
-        //         return ResultHelper.Error("账号不存在，用户名或密码错误！");
-        //     }
-        //     return ResultHelper.Success(_jwtService.GetToken(user));
-        // });
-        var usersList = _userService.GetUser(name, password);
-        return Ok();
+        var res = Task.Run(() =>
+        {
+            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(password))
+            {
+                return ResultHelper.Error("参数不能为空");
+            }
+            UserRes user = _userService.GetUser(name, password);
+            if (string.IsNullOrEmpty(user.Name))
+            {
+                return ResultHelper.Error("账号不存在，用户名或密码错误！");
+            }
+            return ResultHelper.Success(_jwtService.GetToken(user));
+        });
+        return await res;
     }
 }

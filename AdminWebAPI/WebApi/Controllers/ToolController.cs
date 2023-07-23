@@ -1,7 +1,6 @@
-using System.Reflection;
+using EFCoreMigrations;
 using Microsoft.AspNetCore.Mvc;
 using Model.Entitys;
-using SqlSugar;
 
 namespace WebApi.Controllers;
 
@@ -9,26 +8,17 @@ namespace WebApi.Controllers;
 [ApiController]
 public class ToolController : ControllerBase
 {
-    public ISqlSugarClient _db;
+    private MyDbContext _context;
 
-    public ToolController(ISqlSugarClient sqlSugarClient)
+    public ToolController(MyDbContext context)
     {
-        _db = sqlSugarClient;
+        _context = context;
     }
 
     [HttpGet]
     public string InitDateBase()
     {
-        string res = "ok";
-        //创建数据库
-        _db.DbMaintenance.CreateDatabase();
-        // 创建表
-        string nspace = "Model.Entitys";
-        // 通过反射读取类
-        Type[] ass = Assembly.LoadFrom(AppContext.BaseDirectory + "Model.dll").GetTypes()
-            .Where(p => p.Namespace == nspace).ToArray();
-        _db.CodeFirst.SetStringDefaultLength(200).InitTables(ass);
-        //初始化数据库
+        //创建初始化值
         Users user = new Users()
         {
             Name = "lbh",
@@ -41,7 +31,8 @@ public class ToolController : ControllerBase
             CreateUserId = 0,
             IsDeleted = 0
         };
-        _db.Insertable(user).ExecuteReturnBigIdentity();
-        return res;
+        _context.Users.Add(user);
+        _context.SaveChanges();
+        return "ok";
     }
 }

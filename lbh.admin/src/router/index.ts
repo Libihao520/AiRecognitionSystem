@@ -7,8 +7,15 @@ const router = createRouter({
     routes: [
         { path: '/', redirect: '/login' },
         { path: '/login', component: LoginPage },
-        { path: '/DeskTop', component: DeskTop },
-        {path:'/RootPage',component:RootPage}
+        {
+            path: '/RootPage', component: RootPage,
+            children:
+                [
+                    {
+                        name: "", path: "/DeskTop", component: DeskTop
+                    }
+                ]
+        }
     ]
 })
 export default router;

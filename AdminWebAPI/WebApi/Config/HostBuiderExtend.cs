@@ -4,7 +4,6 @@ using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Model.Other;
-using SqlSugar;
 
 namespace WebApi.Config;
 
@@ -16,25 +15,25 @@ public static class HostBuiderExtend
         app.Host.ConfigureContainer<ContainerBuilder>(builder =>
         {
             #region 注册sqlsuger
-
-            builder.Register<ISqlSugarClient>(context =>
-            {
-                SqlSugarClient db = new SqlSugarClient(new ConnectionConfig()
-                {
-                    ConnectionString =
-                        "Data Source=127.0.0.1;Initial Catalog=newlbhadmin;User ID=sa;Password=qwe20211114.;",
-                    DbType = DbType.SqlServer,
-                    IsAutoCloseConnection = true
-                });
-                //支持sql语句输出，方便排查
-                db.Aop.OnLogExecuted = (sql, par) =>
-                {
-                    Console.WriteLine("\r\n");
-                    Console.WriteLine($"{DateTime.Now.ToString("yy-MM-dd")}sql语句========>:{sql}");
-                };
-
-                return db;
-            });
+            //弃用，换成efcore
+            // builder.Register<ISqlSugarClient>(context =>
+            // {
+            //     SqlSugarClient db = new SqlSugarClient(new ConnectionConfig()
+            //     {
+            //         ConnectionString =
+            //             "Data Source=127.0.0.1;Initial Catalog=newlbhadmin;User ID=sa;Password=qwe20211114.;",
+            //         DbType = DbType.SqlServer,
+            //         IsAutoCloseConnection = true
+            //     });
+            //     //支持sql语句输出，方便排查
+            //     db.Aop.OnLogExecuted = (sql, par) =>
+            //     {
+            //         Console.WriteLine("\r\n");
+            //         Console.WriteLine($"{DateTime.Now.ToString("yy-MM-dd")}sql语句========>:{sql}");
+            //     };
+            //
+            //     return db;
+            // });
 
             #endregion
 
@@ -43,7 +42,7 @@ public static class HostBuiderExtend
         });
         //Automapper映射
         app.Services.AddAutoMapper(typeof(AutoMapperConfigs));
-        //注册JWT
+        //读取appsettings的JWTTokenOptions，注册JWT
         app.Services.Configure<JWTTokenOptions>(app.Configuration.GetSection("JWTTokenOptions"));
 
         #region JWT校验
