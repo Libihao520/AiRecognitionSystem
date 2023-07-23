@@ -31,7 +31,24 @@ public class ToolController : ControllerBase
             CreateUserId = 0,
             IsDeleted = 0
         };
+        DeskTops deskTops = new DeskTops()
+        {
+            yf = "1",
+            fz =1200,
+            sf =120,
+            df =50,
+            hj =1900,
+            cr =321,
+            sy =123,
+            jldc=123,
+            ck =123,
+            Description = "默认角色",
+            CreateDate = DateTime.Now,
+            CreateUserId = 0,
+            IsDeleted = 0
+        };
         _context.Users.Add(user);
+        _context.DeskTops.Add(deskTops);
         _context.SaveChanges();
         return "ok";
     }

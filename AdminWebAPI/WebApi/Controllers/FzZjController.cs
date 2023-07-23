@@ -1,6 +1,9 @@
+using Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Model.Dto.Desk;
 using Model.Dto.User;
+using Model.Entitys;
 using Model.Other;
 using WebApi.Config;
 
@@ -11,12 +14,20 @@ namespace WebApi.Controllers;
 [Authorize]
 public class FzZjController :ControllerBase
 {
+    private IDeskTopService _deskTopService;
+
+    public FzZjController(IDeskTopService deskTopService)
+    {
+        _deskTopService = deskTopService;
+    }
+
     [HttpGet]
-    public  async Task<ApiResult> fzzj()
+    public  async Task<DeskReq> desktop()
     {
         var res = Task.Run(() =>
         {
-            return ResultHelper.Success("成功");
+            DeskReq deskReq = _deskTopService.GetData();
+            return deskReq;
         });
         return await res;
     }

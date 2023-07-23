@@ -1,4 +1,5 @@
 using AutoMapper;
+using Model.Dto.Desk;
 using Model.Dto.User;
 using Model.Entitys;
 
@@ -12,5 +13,6 @@ public class AutoMapperConfigs : Profile
         CreateMap<Users, UserRes>();
         CreateMap<UserAdd, Users>();
         CreateMap<UserEdit, Users>();
+        CreateMap<DeskTops,DeskReq>();
     }
 }
