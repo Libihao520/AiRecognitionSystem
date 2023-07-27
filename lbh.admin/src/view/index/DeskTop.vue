@@ -37,7 +37,10 @@ const logOut = () => {
   new Tool().ClearLocalStorage();
   router.push({ path: "/login" });
 };
-let fz =  getfzzjdesktop() as any as string;
+let data = {
+  hj:0
+}
+let fz =  getfzzjdesktop(data);
 
 
 console.log(fz)
@@ -45,7 +48,7 @@ console.log(fz)
 const list = ref([{
         "Title": "收入",
         "Icon": "CreditCard",
-        "Count": 0
+        "Count": fz
     },
     {
         "Title": "大餐",
@@ -62,6 +65,7 @@ const list = ref([{
         "Icon": "ShoppingCart",
         "Count": 0
     }])
+    
 </script>
 <style lang="scss" scoped>
 .cardContent {
