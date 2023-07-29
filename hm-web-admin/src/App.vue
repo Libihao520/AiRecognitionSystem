@@ -1,12 +1,14 @@
 <script setup>
-const goList = () => {
-  this.$router.push('/list')
-}
+import { useUserStore } from '@/stores'
+const userStore = useUserStore()
 </script>
+
 <template>
-  <div>wsdiv</div>
-  <el-button @click="$router.push('/home')">跳首页</el-button>
-  <button @click="goList">跳列表</button>
+  <div>
+    <p>{{ userStore.token }}</p>
+    <el-button @click="userStore.setToken('aaaaaaa-token')">登录</el-button>
+    <el-button @click="userStore.removeToken">退出</el-button>
+  </div>
 </template>
 
 <style scoped></style>
