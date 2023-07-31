@@ -1,19 +1,8 @@
-<script setup>
-import { useUserStore } from '@/stores'
-const userStore = useUserStore()
-</script>
+<script setup></script>
 
 <template>
   <div>
-    <hr />
     <router-view></router-view>
-    <hr />
-    <hr />
-    <hr />
-
-    <p>{{ userStore.token }}</p>
-    <el-button @click="userStore.setToken('aaaaaaa-token')">登录</el-button>
-    <el-button @click="userStore.removeToken">退出</el-button>
   </div>
 </template>
 
