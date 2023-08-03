@@ -10,6 +10,13 @@ import {
   CaretBottom
 } from '@element-plus/icons-vue'
 import avatar from '@/assets/default.png'
+import { useUserStore } from '@/stores'
+import { onMounted } from 'vue'
+const userStore = useUserStore()
+//拿user信息  user.js => getuser => api_user.js => userGetInfoService
+onMounted(() => {
+  userStore.getUser()
+})
 </script>
 
 <template>
@@ -53,10 +60,14 @@ import avatar from '@/assets/default.png'
     </el-aside>
     <el-container>
       <el-header>
-        <div>用户名：<strong>李碧豪</strong></div>
+        <div>
+          用户名：<strong>{{
+            userStore.user.nickname || userStore.user.username
+          }}</strong>
+        </div>
         <el-dropdown placement="bottom-end">
           <span class="el-dropdown__box">
-            <el-avatar :src="avatar" />
+            <el-avatar :src="userStore.user.user_pic || avatar" />
             <el-icon><CaretBottom /></el-icon>
           </span>
           <template #dropdown>
