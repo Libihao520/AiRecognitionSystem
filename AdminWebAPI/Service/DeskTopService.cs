@@ -2,6 +2,8 @@ using AutoMapper;
 using EFCoreMigrations;
 using Interface;
 using Model.Dto.Desk;
+using Model.Entitys;
+using Model.Other;
 
 namespace Service;
 
@@ -16,13 +18,16 @@ public class DeskTopService:IDeskTopService
         _mapper = mapper;
     }
 
-    public DeskReq GetData()
+    public PageInfo GetData()
     {
-        var deskTopsEnumerable = _context.DeskTops.FirstOrDefault();
+        PageInfo pageInfo = new PageInfo();
+        var deskTopsEnumerable = _context.DeskTops.ToList();
         if (deskTopsEnumerable != null)
         {
-            return _mapper.Map<DeskReq>(deskTopsEnumerable);
+            pageInfo.Total = 1;
+            pageInfo.Data = _mapper.Map<List<DeskReq>>(deskTopsEnumerable);
+            return pageInfo;
         }
-        return new DeskReq();
+        return new PageInfo();
     }
 }

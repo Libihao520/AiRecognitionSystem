@@ -22,13 +22,9 @@ public class FzZjController :ControllerBase
     }
 
     [HttpGet]
-    public  async Task<DeskReq> desktop()
+    public  ApiResult desktop()
     {
-        var res = Task.Run(() =>
-        {
-            DeskReq deskReq = _deskTopService.GetData();
-            return deskReq;
-        });
-        return await res;
+        
+            return ResultHelper.Success( _deskTopService.GetData());
     }
 }
