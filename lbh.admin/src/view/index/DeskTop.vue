@@ -1,11 +1,9 @@
 <template>
   <div class="cardContent">
     <el-card class="box-card" v-for="item in list">
-
       <CardCom :info="item"></CardCom>
     </el-card>
   </div>
-
 
   <el-row :gutter="10">
     <el-col :span="8">
@@ -25,7 +23,7 @@ import { useRouter } from "vue-router";
 import Tool from "../../global";
 import { getfzzjdesktop } from "../../http";
 import { UserInfo } from "./class/UserInfo";
-import CardCom from '../../components/CardCom.vue'
+import CardCom from "../../components/CardCom.vue";
 const circleUrl = ref("/images/Person.jpg");
 const NickName = ref();
 const router = useRouter();
@@ -37,62 +35,65 @@ const logOut = () => {
   new Tool().ClearLocalStorage();
   router.push({ path: "/login" });
 };
-let data = {
-  hj:0
-}
-let fz =  getfzzjdesktop(data);
+const fz = ref([]);
+const getfzlist = async () => {
+  const res = await getfzzjdesktop(fz) as any;
+  fz.value = res.data
+  console.log(res);
+  console.log(fz);
+};
+getfzlist();
 
 
-console.log(fz)
 
-const list = ref([{
-        "Title": "收入",
-        "Icon": "CreditCard",
-        "Count": fz
-    },
-    {
-        "Title": "大餐",
-        "Icon": "Food",
-        "Count": 0
-    },
-    {
-        "Title": "通勤金额",
-        "Icon": "Ship",
-        "Count": 0
-    },
-    {
-        "Title": "购物金额",
-        "Icon": "ShoppingCart",
-        "Count": 0
-    }])
-    
+const list = ref([
+  {
+    Title: "收入",
+    Icon: "CreditCard",
+    Count: fz,
+  },
+  {
+    Title: "大餐",
+    Icon: "Food",
+    Count: 0,
+  },
+  {
+    Title: "通勤金额",
+    Icon: "Ship",
+    Count: 0,
+  },
+  {
+    Title: "购物金额",
+    Icon: "ShoppingCart",
+    Count: 0,
+  },
+]);
 </script>
 <style lang="scss" scoped>
 .cardContent {
-    width: 100%;
-    margin: 0px auto;
+  width: 100%;
+  margin: 0px auto;
 
-    .box-card {
-        float: left;
-        width: 24%;
-        margin-right: 5px;
-        margin-bottom: 20px;
-    }
+  .box-card {
+    float: left;
+    width: 24%;
+    margin-right: 5px;
+    margin-bottom: 20px;
+  }
 
-    .left,
-    .right {
-        float: left;
-        width: 48%;
-        margin-bottom: 20px;
-    }
+  .left,
+  .right {
+    float: left;
+    width: 48%;
+    margin-bottom: 20px;
+  }
 
-    .lineCard {
-        width: 97.5%;
-    }
+  .lineCard {
+    width: 97.5%;
+  }
 
-    .right {
-        margin-left: 20px;
-    }
-
+  .right {
+    margin-left: 20px;
+  }
 }
 </style>
