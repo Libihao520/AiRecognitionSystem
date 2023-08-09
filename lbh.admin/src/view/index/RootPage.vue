@@ -45,12 +45,12 @@ const handleSelect = (index: string) => {
                   <span>工作台</span>
                 </template>
               </el-menu-item>
-              <el-menu-item index='/person'>
+              <el-menu-item index='/menumanager'>
                 <template #title>
                   <el-icon>
                     <list />
                   </el-icon>
-                  <span>信息编辑</span>
+                  <span>menu</span>
                 </template>
               </el-menu-item>
               <TreeMenuVue :list="res"></TreeMenuVue>

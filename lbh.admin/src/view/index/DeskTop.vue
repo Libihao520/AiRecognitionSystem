@@ -13,7 +13,7 @@
 
   <el-row class="mb-4">
     <el-button type="primary" @click="logOut">退出</el-button>
-    <h1>{{ fz }}</h1>
+    <h1>{{ a }}</h1>
   </el-row>
 </template>
 <script lang="ts" setup>
@@ -37,14 +37,11 @@ const logOut = () => {
 };
 const fz = ref([]);
 const getfzlist = async () => {
-  const res = await getfzzjdesktop(fz) as any;
-  fz.value = res.data
-  console.log(res);
-  console.log(fz);
+  const res = (await getfzzjdesktop(fz)) as any;
+  fz.value = res.data;
+  const a = fz[0].value;
 };
 getfzlist();
-
-
 
 const list = ref([
   {
