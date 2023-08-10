@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { Edit, Delete } from '@element-plus/icons-vue'
-import { getfzzjdesktop } from "../../../http";
+import { getfzzjtable } from "../../../http";
 
 const fz = ref([]);
 const getfzlist = async () => {
-  const res = (await getfzzjdesktop(fz)) as any;
+  const res = (await getfzzjtable()) as any;
   fz.value = res.data;
 
   console.log(res);

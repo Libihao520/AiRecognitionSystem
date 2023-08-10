@@ -4,18 +4,6 @@
       <CardCom :info="item"></CardCom>
     </el-card>
   </div>
-
-  <el-row :gutter="10">
-    <el-col :span="8">
-      <el-card shadow="hover">登录成功！nickName： {{ NickName }} </el-card>
-    </el-col>
-  </el-row>
-
-  <el-row class="mb-4">
-    <el-button type="primary" @click="logOut">退出</el-button>
-  </el-row>
-  <a1>{{sl}}</a1>
-  <a1>{{ fz}}</a1>
 </template>
 <script lang="ts" setup>
 import { ref, onMounted } from "vue";
@@ -36,25 +24,26 @@ const logOut = () => {
   new Tool().ClearLocalStorage();
   router.push({ path: "/login" });
 };
-const fz = ref([])
-const sl = ref([])
+const cr = ref([]);
+const jldc = ref([]);
+
 const getfzlist = async () => {
-  const res = (await getfzzjdesktop(fz)) as any;
-  console.log(res.data)
-  fz.value = res.data[0]["fz"];
-  sl.value = res.data[0]["yf"];
+  const res = (await getfzzjdesktop()) as any;
+  console.log(res.data);
+  cr.value = res.data.cr;
+  jldc.value = res.data.jldc;
 };
 getfzlist();
 const list = ref([
   {
     Title: "收入",
     Icon: "CreditCard",
-    Count: sl,
+    Count: cr,
   },
   {
     Title: "大餐",
     Icon: "Food",
-    Count: fz,
+    Count: jldc,
   },
   {
     Title: "通勤金额",
