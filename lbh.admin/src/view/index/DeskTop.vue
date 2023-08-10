@@ -1,6 +1,6 @@
 <template>
   <div class="cardContent">
-    <el-card class="box-card" v-for="item in list">
+    <el-card class="box-card" v-for="item in list" :key="item.Title">
       <CardCom :info="item"></CardCom>
     </el-card>
   </div>
@@ -13,7 +13,6 @@
 
   <el-row class="mb-4">
     <el-button type="primary" @click="logOut">退出</el-button>
-    <h1>{{ a }}</h1>
   </el-row>
 </template>
 <script lang="ts" setup>
@@ -47,7 +46,7 @@ const list = ref([
   {
     Title: "收入",
     Icon: "CreditCard",
-    Count: fz,
+    Count: 0,
   },
   {
     Title: "大餐",

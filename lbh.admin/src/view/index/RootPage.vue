@@ -50,7 +50,7 @@ const handleSelect = (index: string) => {
                   <el-icon>
                     <list />
                   </el-icon>
-                  <span>menu</span>
+                  <span>表单</span>
                 </template>
               </el-menu-item>
               <TreeMenuVue :list="res"></TreeMenuVue>

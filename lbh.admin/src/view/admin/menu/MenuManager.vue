@@ -14,12 +14,16 @@ const getfzlist = async () => {
 getfzlist();
 </script>
 <template>
-<p1>{{ fz }}</p1>
-
-<el-table :data="fz" style="width: 100%">
-    <el-table-column prop="hj" label="合计" width="180" />
-    <el-table-column prop="name" label="Name" width="180" />
-    <el-table-column prop="address" label="Address" />
+  <el-table :data="fz" style="width: 100%">
+    <el-table-column prop="yf" label="月份" width="90" />
+    <el-table-column prop="fz" label="房租" width="90" />
+    <el-table-column prop="sf" label="水" width="90" />
+    <el-table-column prop="df" label="电" width="90" />
+    <el-table-column prop="hj" label="合计" width="90" />
+    <el-table-column prop="cr" label="存入" width="90" />
+    <el-table-column prop="sy" label="剩余" width="90" />
+    <el-table-column prop="jldc" label="大餐" width="90" />
+    <el-table-column prop="ck" label="存款" />
   </el-table>
 </template>
 
