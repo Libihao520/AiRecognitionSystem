@@ -14,6 +14,8 @@
   <el-row class="mb-4">
     <el-button type="primary" @click="logOut">退出</el-button>
   </el-row>
+  <a1>{{sl}}</a1>
+  <a1>{{ fz}}</a1>
 </template>
 <script lang="ts" setup>
 import { ref, onMounted } from "vue";
@@ -34,24 +36,25 @@ const logOut = () => {
   new Tool().ClearLocalStorage();
   router.push({ path: "/login" });
 };
-const fz = ref([]);
+const fz = ref([])
+const sl = ref([])
 const getfzlist = async () => {
   const res = (await getfzzjdesktop(fz)) as any;
-  fz.value = res.data;
-  const a = fz[0].value;
+  console.log(res.data)
+  fz.value = res.data[0]["fz"];
+  sl.value = res.data[0]["yf"];
 };
 getfzlist();
-
 const list = ref([
   {
     Title: "收入",
     Icon: "CreditCard",
-    Count: 0,
+    Count: sl,
   },
   {
     Title: "大餐",
     Icon: "Food",
-    Count: 0,
+    Count: fz,
   },
   {
     Title: "通勤金额",
