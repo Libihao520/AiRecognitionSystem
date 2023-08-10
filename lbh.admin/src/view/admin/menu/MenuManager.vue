@@ -3,18 +3,18 @@ import { ref, onMounted } from "vue";
 import { getfzzjtable } from "../../../http";
 
 const fz = ref([]);
-
+//用于转菊花
+const loading = ref(false)
 const getfzlist = async () => {
+  loading.value = true
   const res = (await getfzzjtable()) as any;
   fz.value = res.data;
-
-  console.log(res);
-  console.log(fz);
+  loading.value = false
 };
 getfzlist();
 </script>
 <template>
-  <el-table :data="fz" style="width: 100%">
+  <el-table v-loading="loading" :data="fz" style="width: 100%">
     <el-table-column prop="yf" label="月份" width="90" />
     <el-table-column prop="fz" label="房租" width="90" />
     <el-table-column prop="sf" label="水" width="90" />

@@ -4,12 +4,12 @@ import { Edit, Delete } from '@element-plus/icons-vue'
 import { getfzzjtable } from "../../../http";
 
 const fz = ref([]);
+const loading = ref(false)
 const getfzlist = async () => {
+  loading.value = true
   const res = (await getfzzjtable()) as any;
   fz.value = res.data;
-
-  console.log(res);
-  console.log(fz);
+  loading.value=false
 };
 getfzlist();
 const onEditChannel = (row, $index) => {
@@ -21,7 +21,7 @@ const onEditChannel = (row, $index) => {
     <template #extra>
       <el-button>添加分类</el-button>
     </template>
-    <el-table :data="fz" style="width: 100%">
+    <el-table v-loading="loading" :data="fz" style="width: 100%">
       <el-table-column type="index" label="序号" width="100%"></el-table-column>
       <el-table-column prop="yf" label="分类名称"></el-table-column>
       <el-table-column prop="fz" label="分类别名"></el-table-column>
