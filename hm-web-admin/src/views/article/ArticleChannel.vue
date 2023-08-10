@@ -45,6 +45,9 @@ const onEditChannel = (row, $index) => {
           ></el-button>
         </template>
       </el-table-column>
+      <template #empty>
+        <el-empty description="没有数据"></el-empty>
+      </template>
     </el-table>
   </page-container>
 </template>
