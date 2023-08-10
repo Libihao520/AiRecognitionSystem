@@ -14,17 +14,23 @@ namespace WebApi.Controllers;
 // [Authorize]
 public class FzZjController :ControllerBase
 {
-    private IDeskTopService _deskTopService;
+    private IFzTbService _fzTbService;
 
-    public FzZjController(IDeskTopService deskTopService)
+    public FzZjController(IFzTbService fzTbService)
     {
-        _deskTopService = deskTopService;
+        _fzTbService = fzTbService;
     }
 
     [HttpGet]
-    public  ApiResult desktop()
+    public  ApiResult GetDesktop()
+    {
+        return ResultHelper.Success( _fzTbService.GetDeskData());
+    }
+    
+    [HttpGet]
+    public  ApiResult GetTable()
     {
         
-            return ResultHelper.Success( _deskTopService.GetData());
+        return ResultHelper.Success( _fzTbService.GetTableData());
     }
 }

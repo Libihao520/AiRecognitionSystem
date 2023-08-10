@@ -1,6 +1,6 @@
 namespace Model.Dto.Desk;
 
-public class DeskReq
+public class FzTbRes
 {
     public string yf { get; set; }
     public int fz { get; set; }

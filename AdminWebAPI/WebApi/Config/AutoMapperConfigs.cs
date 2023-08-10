@@ -13,6 +13,6 @@ public class AutoMapperConfigs : Profile
         CreateMap<Users, UserRes>();
         CreateMap<UserAdd, Users>();
         CreateMap<UserEdit, Users>();
-        CreateMap<DeskTops,DeskReq>();
+        CreateMap<DeskTops, FzTbRes>();
     }
 }

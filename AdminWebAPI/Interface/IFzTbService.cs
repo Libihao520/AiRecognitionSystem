@@ -4,7 +4,8 @@ using Model.Other;
 
 namespace Interface;
 
-public interface IDeskTopService
+public interface IFzTbService
 {
-    PageInfo GetData();
+    PageInfo GetDeskData();
+    PageInfo GetTableData();
 }
