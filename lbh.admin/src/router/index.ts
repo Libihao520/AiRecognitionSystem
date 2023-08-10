@@ -3,6 +3,7 @@ import LoginPage from '../view/index/LoginPage.vue'
 import DeskTop from '../view/index/DeskTop.vue'
 import RootPage from '../view/index/RootPage.vue'
 import MenuManager from '../view/admin/menu/MenuManager.vue'
+import MenuManager2 from '../view/admin/menu/MenuManager2.vue'
 const router = createRouter({
     history: createWebHistory(),
     routes: [
@@ -17,6 +18,9 @@ const router = createRouter({
                     },
                     {
                         name: "", path: "/MenuManager", component: MenuManager
+                    },
+                    {
+                        name: "", path: "/MenuManager2", component: MenuManager2
                     }
                 ]
         }

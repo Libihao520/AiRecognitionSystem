@@ -53,6 +53,14 @@ const handleSelect = (index: string) => {
                   <span>表单</span>
                 </template>
               </el-menu-item>
+              <el-menu-item index='/menumanager2'>
+                <template #title>
+                  <el-icon>
+                    <list />
+                  </el-icon>
+                  <span>表单2</span>
+                </template>
+              </el-menu-item>
               <TreeMenuVue :list="res"></TreeMenuVue>
             </el-menu>
           </el-col>
