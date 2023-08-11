@@ -2,10 +2,12 @@
 import { ref } from 'vue'
 import { Edit, Delete } from '@element-plus/icons-vue'
 import { artGetChannelsService } from '../../api/article'
+import ChannelEdit from './components/ChannelEdit.vue'
 
 const channelList = ref([])
 const loading = ref(false)
-const dialogVisible = ref(false)
+const dialog = ref()
+
 const getChannelList = async () => {
   loading.value = true
   const res = await artGetChannelsService()
@@ -14,11 +16,12 @@ const getChannelList = async () => {
   loading.value = false
 }
 getChannelList()
-const onEditChannel = (row, $index) => {
-  console.log(row, $index)
+
+const onEditChannel = (row) => {
+  dialog.value.open({ row })
 }
 const onAddChannel = () => {
-  dialogVisible.value = true
+  dialog.value.open({})
 }
 </script>
 <template>
@@ -53,18 +56,7 @@ const onAddChannel = () => {
         <el-empty description="没有数据"></el-empty>
       </template>
     </el-table>
-
-    <el-dialog v-model="dialogVisible" title="添加弹层" width="30%">
-      <span>内容</span>
-      <template #footer>
-        <span class="dialog-footer">
-          <el-button @click="dialogVisible = false">取消</el-button>
-          <el-button type="primary" @click="dialogVisible = false">
-            确认
-          </el-button>
-        </span>
-      </template>
-    </el-dialog>
+    <channel-edit ref="dialog"></channel-edit>
   </page-container>
 </template>
 <style lang="scss" scoped></style>

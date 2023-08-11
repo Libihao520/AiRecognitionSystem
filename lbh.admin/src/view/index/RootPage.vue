@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref, onMounted, toRef } from 'vue'
-import HeaderCom from '../../components/HeaderCom.vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useStore } from 'vuex'
 const url = ref('/images/logo.ico')

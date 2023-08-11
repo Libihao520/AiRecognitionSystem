@@ -2,10 +2,11 @@
 import { ref } from 'vue'
 import { Edit, Delete } from '@element-plus/icons-vue'
 import { getfzzjtable } from "../../../http";
+import ChannelEdit from './components/ChannelEdit.vue';
 
 const fz = ref([]);
 const loading = ref(false)
-const dialogVisible = ref(false)
+const dialog = ref()
 //请求获取数据
 const getfzlist = async () => {
   loading.value = true
@@ -16,10 +17,10 @@ const getfzlist = async () => {
 getfzlist();
 //click
 const onEditChannel = (row, $index) => {
-  console.log(row, $index)
+  dialog.value.open({row})
 }
 const onAddChannel = () => {
-  dialogVisible.value = true
+  dialog.value.open({})
 }
 </script>
 <template>
@@ -51,17 +52,7 @@ const onAddChannel = () => {
         </template>
       </el-table-column>
     </el-table>
-    <el-dialog v-model="dialogVisible" title="添加弹层" width="30%">
-      <span>内容</span>
-      <template #footer>
-        <span class="dialog-footer">
-          <el-button @click="dialogVisible = false">取消</el-button>
-          <el-button type="primary" @click="dialogVisible = false">
-            确认
-          </el-button>
-        </span>
-      </template>
-    </el-dialog>
+    <channel-edit ref="dialog"></channel-edit>
   </page-container>
 </template>
 <style lang="scss" scoped></style>
