@@ -12,7 +12,7 @@ import { useRouter } from "vue-router";
 import Tool from "../../global";
 import { getfzzjdesktop } from "../../http";
 import { UserInfo } from "./class/UserInfo";
-import CardCom from "../../components/CardCom.vue";
+
 const circleUrl = ref("/images/Person.jpg");
 const NickName = ref();
 const router = useRouter();
