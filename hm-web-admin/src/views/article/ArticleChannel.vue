@@ -18,7 +18,7 @@ const getChannelList = async () => {
 getChannelList()
 
 const onEditChannel = (row) => {
-  dialog.value.open({ row })
+  dialog.value.open(row)
 }
 const onAddChannel = () => {
   dialog.value.open({})
