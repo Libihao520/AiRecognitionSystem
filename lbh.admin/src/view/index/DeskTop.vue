@@ -9,7 +9,6 @@
 import { ref, onMounted } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
-import Tool from "../../global";
 import { getfzzjdesktop } from "../../http";
 import { UserInfo } from "./class/UserInfo";
 
@@ -20,10 +19,6 @@ onMounted(() => {
   NickName.value = useStore().state.NickName;
 });
 
-const logOut = () => {
-  new Tool().ClearLocalStorage();
-  router.push({ path: "/login" });
-};
 const cr = ref([]);
 const jldc = ref([]);
 

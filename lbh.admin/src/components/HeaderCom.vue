@@ -43,6 +43,7 @@
 import { ref, onMounted } from 'vue'
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
+import Tool from "../global";
 const circleUrl = ref('/images/Person.jpg')
 const NickName = ref()
 const router = useRouter()
@@ -53,6 +54,7 @@ const goToPerson = () => {
     router.push({ path: "/person" })
 }
 const logOut = () => {
+    new Tool().ClearLocalStorage();
     router.push({ path: '/login' });
 }
 </script>
