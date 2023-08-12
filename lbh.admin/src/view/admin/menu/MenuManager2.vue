@@ -17,7 +17,7 @@ const getfzlist = async () => {
 getfzlist();
 //click
 const onEditChannel = (row, $index) => {
-  dialog.value.open({ row });
+  dialog.value.open( row );
 };
 const onAddChannel = () => {
   dialog.value.open({});
