@@ -1,6 +1,6 @@
 <script lang = "ts" setup>
 import { ShoppingCart, Ship, CreditCard, Food } from '@element-plus/icons-vue'
-import { defineProps } from 'vue';
+
 import { CardModel } from '../class/CardModel'
 defineProps({
     info: CardModel
