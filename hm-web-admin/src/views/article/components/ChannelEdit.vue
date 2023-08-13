@@ -23,6 +23,7 @@ const rules = {
     }
   ]
 }
+const emit = defineEmits(['success'])
 const onSubmit = async () => {
   await formRef.value.validate()
   const isEdit = formModel.value.id
@@ -34,6 +35,8 @@ const onSubmit = async () => {
     await artAddChannelService(formModel.value)
     ElMessage.success('添加成功')
   }
+  dialogVisible.value=false
+  emit('success')
 }
 
 //组件对外暴露方法
