@@ -8,4 +8,5 @@ public interface IFzTbService
 {
     PageInfo GetDeskData();
     PageInfo GetTableData();
+    PageInfo AddTableData(FzTbAdd db);
 }

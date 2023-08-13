@@ -33,4 +33,10 @@ public class FzZjController :ControllerBase
         
         return ResultHelper.Success( _fzTbService.GetTableData());
     }
+
+    [HttpPost]
+    public ApiResult AddTable(FzTbAdd db)
+    {
+        return ResultHelper.Success(_fzTbService.AddTableData(db));
+    }
 }

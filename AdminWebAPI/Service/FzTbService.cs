@@ -54,4 +54,9 @@ public class FzTbService:IFzTbService
         }
         return new PageInfo();
     }
+
+    public PageInfo AddTableData(FzTbAdd db)
+    {
+        throw new NotImplementedException();
+    }
 }
