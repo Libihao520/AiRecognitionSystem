@@ -33,6 +33,7 @@ const onSubmit = async () => {
     await artAddChannelService(formModel.value)
     ElMessage.success('添加成功')
   }
+  dialogVisible.value=false
 }
 
 //组件对外暴露方法
