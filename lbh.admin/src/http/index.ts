@@ -16,3 +16,11 @@ export const getfzzjtable = () => {
     instance.defaults.headers.common['Authorization']="Bearer "+localStorage["token"];
     return instance.get(http + "/FzZj/GetTable");
 }
+export const addfzzjtable = (data) => {
+    instance.defaults.headers.common['Authorization']="Bearer "+localStorage["token"];
+    return instance.post(http + "/FzZj/AddTable",data);
+}
+export const putfzzjtable = (data) => {
+    instance.defaults.headers.common['Authorization']="Bearer "+localStorage["token"];
+    return instance.put(http + "/FzZj/putTable",data);
+}
