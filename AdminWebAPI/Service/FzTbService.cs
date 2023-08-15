@@ -7,7 +7,7 @@ using Model.Other;
 
 namespace Service;
 
-public class FzTbService:IFzTbService
+public class FzTbService : IFzTbService
 {
     private readonly IMapper _mapper;
     private MyDbContext _context;
@@ -22,10 +22,11 @@ public class FzTbService:IFzTbService
     {
         PageInfo pageInfo = new PageInfo();
         var deskTopsEnumerable = _context.DeskTops.ToList();
-        
+
         var totals = _context.DeskTops
             .GroupBy(d => 1)
-            .Select(g => new {
+            .Select(g => new
+            {
                 cr = g.Sum(x => x.cr),
                 jldc = g.Sum(x => x.jldc)
             }).First();
@@ -39,6 +40,7 @@ public class FzTbService:IFzTbService
             pageInfo.Data = deskRes;
             return pageInfo;
         }
+
         return new PageInfo();
     }
 
@@ -52,11 +54,27 @@ public class FzTbService:IFzTbService
             pageInfo.Data = _mapper.Map<List<FzTbRes>>(deskTopsEnumerable);
             return pageInfo;
         }
+
         return new PageInfo();
     }
 
     public PageInfo AddTableData(FzTbAdd db)
     {
-        throw new NotImplementedException();
+        if (db != null)
+        {
+            PageInfo pageInfo = new PageInfo();
+            var deskTop = _mapper.Map<DeskTops>(db);
+            deskTop.Description = "默认角色";
+            deskTop.CreateDate = DateTime.Now;
+            deskTop.CreateUserId = 0;
+            deskTop.IsDeleted = 0;
+
+            _context.DeskTops.Add(deskTop);
+            _context.SaveChanges();
+            
+            return new PageInfo();
+        }
+
+        return new PageInfo();
     }
 }
