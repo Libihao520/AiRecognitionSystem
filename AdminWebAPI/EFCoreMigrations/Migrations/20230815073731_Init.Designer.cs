@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFCoreMigrations.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20230723113210_desktop")]
-    partial class desktop
+    [Migration("20230815073731_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,7 +24,7 @@ namespace EFCoreMigrations.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Model.Entitys.DeskTops", b =>
+            modelBuilder.Entity("Model.Entitys.FzTbs", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -81,7 +81,7 @@ namespace EFCoreMigrations.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("DeskTops");
+                    b.ToTable("FzTbs");
                 });
 
             modelBuilder.Entity("Model.Entitys.Users", b =>

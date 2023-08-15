@@ -2,7 +2,7 @@ using Model.Common;
 
 namespace Model.Entitys;
 
-public class DeskTops:IEntity
+public class FzTbs:IEntity
 {
     public string yf { get; set; }
     public int fz { get; set; }

@@ -14,7 +14,7 @@ public class AutoMapperConfigs : Profile
         CreateMap<UserAdd, Users>();
         CreateMap<UserEdit, Users>();
         //fztb
-        CreateMap<DeskTops, FzTbRes>();
-        CreateMap< FzTbAdd ,DeskTops>();
+        CreateMap<FzTbs, FzTbRes>();
+        CreateMap< FzTbAdd ,FzTbs>();
     }
 }

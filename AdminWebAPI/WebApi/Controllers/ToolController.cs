@@ -31,7 +31,7 @@ public class ToolController : ControllerBase
             CreateUserId = 0,
             IsDeleted = 0
         };
-        DeskTops deskTops = new DeskTops()
+        FzTbs fzTbs = new FzTbs()
         {
             yf = "1",
             fz =1200,
@@ -48,7 +48,7 @@ public class ToolController : ControllerBase
             IsDeleted = 0
         };
         _context.Users.Add(user);
-        _context.DeskTops.Add(deskTops);
+        _context.FzTbs.Add(fzTbs);
         _context.SaveChanges();
         return "ok";
     }

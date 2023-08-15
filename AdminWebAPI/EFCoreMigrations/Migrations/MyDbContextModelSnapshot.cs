@@ -22,7 +22,7 @@ namespace EFCoreMigrations.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Model.Entitys.DeskTops", b =>
+            modelBuilder.Entity("Model.Entitys.FzTbs", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -79,7 +79,7 @@ namespace EFCoreMigrations.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("DeskTops");
+                    b.ToTable("FzTbs");
                 });
 
             modelBuilder.Entity("Model.Entitys.Users", b =>

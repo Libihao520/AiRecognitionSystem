@@ -21,9 +21,9 @@ public class FzTbService : IFzTbService
     public PageInfo GetDeskData()
     {
         PageInfo pageInfo = new PageInfo();
-        var deskTopsEnumerable = _context.DeskTops.ToList();
+        var deskTopsEnumerable = _context.FzTbs.ToList();
 
-        var totals = _context.DeskTops
+        var totals = _context.FzTbs
             .GroupBy(d => 1)
             .Select(g => new
             {
@@ -47,7 +47,7 @@ public class FzTbService : IFzTbService
     public PageInfo GetTableData()
     {
         PageInfo pageInfo = new PageInfo();
-        var deskTopsEnumerable = _context.DeskTops.ToList();
+        var deskTopsEnumerable = _context.FzTbs.ToList();
         if (deskTopsEnumerable != null)
         {
             pageInfo.Total = 1;
@@ -63,13 +63,13 @@ public class FzTbService : IFzTbService
         if (db != null)
         {
             PageInfo pageInfo = new PageInfo();
-            var deskTop = _mapper.Map<DeskTops>(db);
+            var deskTop = _mapper.Map<FzTbs>(db);
             deskTop.Description = "默认角色";
             deskTop.CreateDate = DateTime.Now;
             deskTop.CreateUserId = 0;
             deskTop.IsDeleted = 0;
 
-            _context.DeskTops.Add(deskTop);
+            _context.FzTbs.Add(deskTop);
             _context.SaveChanges();
             
             return new PageInfo();
