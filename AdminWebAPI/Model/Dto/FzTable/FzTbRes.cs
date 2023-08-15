@@ -2,6 +2,7 @@ namespace Model.Dto.Desk;
 
 public class FzTbRes
 {
+    public long Id { get; set; }
     public string yf { get; set; }
     public int fz { get; set; }
     public int sf { get; set; }
