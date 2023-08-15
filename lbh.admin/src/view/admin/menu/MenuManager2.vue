@@ -29,7 +29,7 @@ const onAddChannel = () => {
       <el-button @click="onAddChannel">添加</el-button>
     </template>
     <el-table v-loading="loading" :data="fz" style="width: 100%">
-      <el-table-column type="index" label="序号" width="100%"></el-table-column>
+      <el-table-column type="index" label="序号" width="60"></el-table-column>
       <el-table-column prop="yf" label="月份"></el-table-column>
       <el-table-column prop="fz" label="房租"></el-table-column>
       <el-table-column prop="sf" label="水"></el-table-column>
@@ -39,7 +39,7 @@ const onAddChannel = () => {
       <el-table-column prop="sy" label="剩余"></el-table-column>
       <el-table-column prop="jldc" label="大餐"></el-table-column>
       <el-table-column prop="ck" label="存款"></el-table-column>
-      <el-table-column label="操作">
+      <el-table-column label="操作" width="100%">
         <!-- row 就是channelList的一项，$index下标 -->
         <template #default="{ row, $index }">
           <el-button

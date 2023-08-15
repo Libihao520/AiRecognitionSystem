@@ -65,6 +65,18 @@ defineExpose({
       <el-form-item label="房租:" prop="fz">
         <el-input v-model="formModel.fz" placeholder="请输入房租"></el-input>
       </el-form-item>
+      <el-form-item label="水费:" prop="sf">
+        <el-input v-model="formModel.sf" placeholder="请输入水费"></el-input>
+      </el-form-item>
+      <el-form-item label="电费:" prop="df">
+        <el-input v-model="formModel.df" placeholder="请输入电费"></el-input>
+      </el-form-item>
+      <el-form-item label="存入:" prop="cr">
+        <el-input v-model="formModel.cr" placeholder="请输入存入"></el-input>
+      </el-form-item>
+      <el-form-item label="大餐:" prop="jldc">
+        <el-input v-model="formModel.jldc" placeholder="请输入大餐"></el-input>
+      </el-form-item>
     </el-form>
     <template #footer>
       <span class="dialog-footer">
