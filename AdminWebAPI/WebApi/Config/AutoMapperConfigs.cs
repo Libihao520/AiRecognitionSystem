@@ -16,5 +16,6 @@ public class AutoMapperConfigs : Profile
         //fztb
         CreateMap<FzTbs, FzTbRes>();
         CreateMap< FzTbAdd ,FzTbs>();
+        CreateMap< FzTbEdit ,FzTbs>();
     }
 }

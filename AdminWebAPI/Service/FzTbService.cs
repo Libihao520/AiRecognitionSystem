@@ -1,6 +1,7 @@
 using AutoMapper;
 using EFCoreMigrations;
 using Interface;
+using Microsoft.EntityFrameworkCore;
 using Model.Dto.Desk;
 using Model.Entitys;
 using Model.Other;
@@ -63,15 +64,43 @@ public class FzTbService : IFzTbService
         if (db != null)
         {
             PageInfo pageInfo = new PageInfo();
-            var deskTop = _mapper.Map<FzTbs>(db);
-            deskTop.Description = "默认角色";
-            deskTop.CreateDate = DateTime.Now;
-            deskTop.CreateUserId = 0;
-            deskTop.IsDeleted = 0;
-
-            _context.FzTbs.Add(deskTop);
+            var fzTb = _mapper.Map<FzTbs>(db);
+            fzTb.Description = "默认角色";
+            fzTb.CreateDate = DateTime.Now;
+            fzTb.CreateUserId = 0;
+            fzTb.IsDeleted = 0;
+            fzTb.hj = fzTb.fz+fzTb.sf + fzTb.df;
+            fzTb.sy = fzTb.cr - fzTb.hj;
+            fzTb.ck = fzTb.sy - fzTb.jldc;
+            _context.FzTbs.Add(fzTb);
             _context.SaveChanges();
-            
+
+            return new PageInfo();
+        }
+
+        return new PageInfo();
+    }
+
+    public PageInfo PutTableData(FzTbEdit db)
+    {
+        if (db != null)
+        {
+            var fztb = _context.FzTbs.AsNoTracking().FirstOrDefault(x => x.Id == db.Id);
+
+            if (fztb != null)
+            {
+                var fzTb = _mapper.Map<FzTbs>(db);
+                fzTb.Description = "默认角色";
+                fzTb.CreateDate = DateTime.Now;
+                fzTb.CreateUserId = 0;
+                fzTb.IsDeleted = 0;
+                fzTb.hj = fzTb.fz+fzTb.sf + fzTb.df;
+                fzTb.sy = fzTb.cr - fzTb.hj;
+                fzTb.ck = fzTb.sy - fzTb.jldc;
+                _context.FzTbs.Update(fzTb);
+                _context.SaveChanges();
+                return new PageInfo();
+            }
             return new PageInfo();
         }
 

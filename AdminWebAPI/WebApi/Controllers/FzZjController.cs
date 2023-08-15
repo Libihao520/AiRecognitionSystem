@@ -39,4 +39,9 @@ public class FzZjController :ControllerBase
     {
         return ResultHelper.Success(_fzTbService.AddTableData(db));
     }
+    [HttpPut]
+    public ApiResult PutTable(FzTbEdit db)
+    {
+        return ResultHelper.Success(_fzTbService.PutTableData(db));
+    }
 }
