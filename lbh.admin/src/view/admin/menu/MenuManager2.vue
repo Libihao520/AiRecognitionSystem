@@ -3,6 +3,7 @@ import { ref } from "vue";
 import { Edit, Delete } from "@element-plus/icons-vue";
 import { delfzzjtable, getfzzjtable } from "../../../http";
 import ChannelEdit from "./components/ChannelEdit.vue";
+import { ElMessageBox } from "element-plus";
 
 const fz = ref([]);
 const loading = ref(false);
@@ -20,6 +21,12 @@ const getfzlist = async () => {
 getfzlist();
 //click
 const onDelChannel = async (row) => {
+  await ElMessageBox.confirm('确认要删除？','温馨提示',{
+    type:'warning',
+    confirmButtonText:'确认',
+    cancelButtonText:'取消'
+
+  })
   await delfzzjtable(row.id)
   ElMessage.success('删除成功')
   getfzlist()

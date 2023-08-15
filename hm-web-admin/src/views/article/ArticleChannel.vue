@@ -19,6 +19,11 @@ const getChannelList = async () => {
 getChannelList()
 
 const onDelChannel = async (row) => {
+  await ElMessageBox.confirm('确认要删除？', '温馨提示', {
+    type: 'warning',
+    confirmButtonText: '确认',
+    cancelButtonText: '取消'
+  })
   await artDelChannelService(row.id)
   ElMessage.success('删除成功')
   getChannelList()
