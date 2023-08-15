@@ -24,3 +24,7 @@ export const putfzzjtable = (data) => {
     instance.defaults.headers.common['Authorization']="Bearer "+localStorage["token"];
     return instance.put(http + "/FzZj/putTable",data);
 }
+export const delfzzjtable = (id) => {
+    instance.defaults.headers.common['Authorization']="Bearer "+localStorage["token"];
+    return instance.delete(http + "/FzZj/delTable",{params:{id}});
+}

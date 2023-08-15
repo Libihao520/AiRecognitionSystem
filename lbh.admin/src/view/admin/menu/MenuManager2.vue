@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 import { Edit, Delete } from "@element-plus/icons-vue";
-import { getfzzjtable } from "../../../http";
+import { delfzzjtable, getfzzjtable } from "../../../http";
 import ChannelEdit from "./components/ChannelEdit.vue";
 
 const fz = ref([]);
@@ -19,6 +19,11 @@ const getfzlist = async () => {
 };
 getfzlist();
 //click
+const onDelChannel = async (row) => {
+  await delfzzjtable(row.id)
+  ElMessage.success('删除成功')
+  getfzlist()
+}
 const onEditChannel = (row, $index) => {
   dialog.value.open( row );
 };
@@ -57,7 +62,7 @@ const onAddChannel = () => {
             circle
             type="danger"
             plain
-            @click="onEditChannel(row, $index)"
+            @click="onDelChannel(row, $index)"
           ></el-button>
         </template>
       </el-table-column>
