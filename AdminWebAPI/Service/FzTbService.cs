@@ -69,7 +69,7 @@ public class FzTbService : IFzTbService
             fzTb.CreateDate = DateTime.Now;
             fzTb.CreateUserId = 0;
             fzTb.IsDeleted = 0;
-            fzTb.hj = fzTb.fz+fzTb.sf + fzTb.df;
+            fzTb.hj = fzTb.fz + fzTb.sf + fzTb.df;
             fzTb.sy = fzTb.cr - fzTb.hj;
             fzTb.ck = fzTb.sy - fzTb.jldc;
             _context.FzTbs.Add(fzTb);
@@ -94,13 +94,27 @@ public class FzTbService : IFzTbService
                 fzTb.CreateDate = DateTime.Now;
                 fzTb.CreateUserId = 0;
                 fzTb.IsDeleted = 0;
-                fzTb.hj = fzTb.fz+fzTb.sf + fzTb.df;
+                fzTb.hj = fzTb.fz + fzTb.sf + fzTb.df;
                 fzTb.sy = fzTb.cr - fzTb.hj;
                 fzTb.ck = fzTb.sy - fzTb.jldc;
                 _context.FzTbs.Update(fzTb);
                 _context.SaveChanges();
                 return new PageInfo();
             }
+
+            return new PageInfo();
+        }
+
+        return new PageInfo();
+    }
+
+    public PageInfo DelTableData(long id)
+    {
+        var fztb = _context.FzTbs.AsNoTracking().FirstOrDefault(x => x.Id == id);
+        if (fztb != null)
+        {
+            _context.FzTbs.Remove(fztb);
+            _context.SaveChanges();
             return new PageInfo();
         }
 

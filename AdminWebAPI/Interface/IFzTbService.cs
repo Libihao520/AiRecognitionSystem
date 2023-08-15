@@ -28,4 +28,10 @@ public interface IFzTbService
     /// <param name="db"></param>
     /// <returns></returns>
     PageInfo PutTableData(FzTbEdit db);
+    /// <summary>
+    /// 删除数据
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    PageInfo DelTableData(long id);
 }

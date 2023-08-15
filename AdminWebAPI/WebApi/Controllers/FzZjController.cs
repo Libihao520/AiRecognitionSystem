@@ -44,4 +44,9 @@ public class FzZjController :ControllerBase
     {
         return ResultHelper.Success(_fzTbService.PutTableData(db));
     }
+    [HttpDelete]
+    public ApiResult DelTable(long id)
+    {
+        return ResultHelper.Success(_fzTbService.DelTableData(id));
+    }
 }
