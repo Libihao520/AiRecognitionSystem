@@ -7,6 +7,9 @@ import ChannelEdit from "./components/ChannelEdit.vue";
 const fz = ref([]);
 const loading = ref(false);
 const dialog = ref();
+const onSuccess = ()=>{
+  getfzlist()
+}
 //请求获取数据
 const getfzlist = async () => {
   loading.value = true;
@@ -59,7 +62,7 @@ const onAddChannel = () => {
         </template>
       </el-table-column>
     </el-table>
-    <channel-edit ref="dialog"></channel-edit>
+    <channel-edit ref="dialog" @success="onSuccess"></channel-edit>
   </page-container>
 </template>
 <style lang="scss" scoped></style>
