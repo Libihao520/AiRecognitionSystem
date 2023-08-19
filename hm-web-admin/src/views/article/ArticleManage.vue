@@ -4,6 +4,7 @@ import { ref } from 'vue'
 import { artGetListService } from '../../api/article'
 import ChannelSelect from './components/ChannelSelect.vue'
 import { formatTime } from '@/utils/format.js'
+import ArticleEdit from '../../components/ArticleEdit.vue'
 
 const articleList = ref([]) //文章列表
 const total = ref(0) //总条数
@@ -49,19 +50,19 @@ const onReset = () => {
   params.value.pagenum = 1
   getArticleList()
 }
+const articleEditRef = ref()
 // 添加
 const onAddArticle = () => {
-  visibleDrawer.value = true
+  articleEditRef.value.open({})
 }
 //编辑
 const onEditArticle = (row) => {
-  console.log(row)
+  articleEditRef.value.open(row)
 }
 //删除
 const onDeleteArticle = (row) => {
   console.log(row)
 }
-const visibleDrawer = ref(false)
 </script>
 <template>
   <page-container title="文章管理">
@@ -133,9 +134,7 @@ const visibleDrawer = ref(false)
       style="margin-top: 20px"
     />
     <!-- 抽屉 -->
-    <el-drawer v-model="visibleDrawer" title="大标题" size="50%">
-      <span>hi there</span></el-drawer
-    >
+    <article-edit ref="articleEditRef"></article-edit>
   </page-container>
 </template>
 <style lang="scss" scoped></style>
