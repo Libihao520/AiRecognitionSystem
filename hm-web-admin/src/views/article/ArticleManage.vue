@@ -7,6 +7,7 @@ import { formatTime } from '@/utils/format.js'
 
 const articleList = ref([]) //文章列表
 const total = ref(0) //总条数
+const loading = ref(false)
 //定义请求参数对象
 const params = ref({
   pagenum: 1,
@@ -16,10 +17,12 @@ const params = ref({
 })
 //获取数据
 const getArticleList = async () => {
+  loading.value = true
   const res = await artGetListService(params.value)
   console.log(res.data)
   articleList.value = res.data.data
   total.value = res.data.total
+  loading.value = false
 }
 getArticleList()
 //处理分页逻辑
@@ -61,7 +64,7 @@ const onDeleteArticle = (row) => {
       </el-form-item>
     </el-form>
     <!-- 表格区域 -->
-    <el-table :data="articleList">
+    <el-table :data="articleList" v-loading="loading">
       <el-table-column label="文章标题" prop="title">
         <template #default="{ row }">
           <el-link type="primary" :underline="false">{{
