@@ -36,6 +36,19 @@ const onCurrentChange = (page) => {
   params.value.pagenum = page
   getArticleList()
 }
+
+//搜索逻辑
+const onSearch = () => {
+  params.value.pagenum = 1
+  getArticleList()
+}
+//重置逻辑
+const onReset = () => {
+  params.value.state = ''
+  params.value.cate_id = ''
+  params.value.pagenum = 1
+  getArticleList()
+}
 //编辑
 const onEditArticle = (row) => {
   console.log(row)
@@ -59,8 +72,8 @@ const onDeleteArticle = (row) => {
         </el-select>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary">搜索</el-button>
-        <el-button>重置</el-button>
+        <el-button @click="onSearch" type="primary">搜索</el-button>
+        <el-button @click="onReset">重置</el-button>
       </el-form-item>
     </el-form>
     <!-- 表格区域 -->
