@@ -1,6 +1,7 @@
 <script setup>
 import { Delete, Edit } from '@element-plus/icons-vue'
 import { ref } from 'vue'
+import ChannelSelect from './components/ChannelSelect.vue'
 const articleList = ref([
   {
     id: 5961,
@@ -17,6 +18,13 @@ const articleList = ref([
     cate_name: '体育'
   }
 ])
+//定义请求参数对象
+const params = ref({
+  pagenum: 1,
+  pagesize: 5,
+  cate_id: '',
+  state: ''
+})
 
 //编辑
 const onEditArticle = (row) => {
@@ -32,18 +40,16 @@ const onDeleteArticle = (row) => {
     <template #extra><el-button>添加文章</el-button></template>
     <el-form inline>
       <el-form-item label="文章分类："
-        ><el-select>
-          <el-option label="新闻" value="110"></el-option>
-          <el-option label="体育" value="137"></el-option> </el-select
+        ><channel-select v-model="params.cate_id"></channel-select
       ></el-form-item>
       <el-form-item label="发布状态：">
-        <el-select>
+        <el-select v-model="params.state">
           <el-option label="已发布" value="已发布"></el-option>
           <el-option label="草稿" value="草稿"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item>
-        <el-button typr="primary">搜索</el-button>
+        <el-button type="primary">搜索</el-button>
         <el-button>重置</el-button>
       </el-form-item>
     </el-form>
