@@ -14,7 +14,7 @@ const params = ref({
   cate_id: '',
   state: ''
 })
-
+//获取数据
 const getArticleList = async () => {
   const res = await artGetListService(params.value)
   console.log(res.data)
@@ -22,7 +22,17 @@ const getArticleList = async () => {
   total.value = res.data.total
 }
 getArticleList()
+//处理分页逻辑
 
+const onSizeChange = (size) => {
+  params.value.pagenum = 1
+  params.value.pagesize = size
+  getArticleList()
+}
+const onCurrentChange = (page) => {
+  params.value.pagenum = page
+  getArticleList()
+}
 //编辑
 const onEditArticle = (row) => {
   console.log(row)
@@ -85,6 +95,18 @@ const onDeleteArticle = (row) => {
         </template>
       </el-table-column>
     </el-table>
+    <!-- 分页区域 -->
+    <el-pagination
+      v-model:current-page="params.pagenum"
+      v-model:page-size="params.pagesize"
+      :page-sizes="[2, 3, 5, 10]"
+      :background="true"
+      layout="jumper,total, sizes, prev, pager, next"
+      :total="total"
+      @size-change="onSizeChange"
+      @current-change="onCurrentChange"
+      style="margin-top: 20px"
+    />
   </page-container>
 </template>
 <style lang="scss" scoped></style>
