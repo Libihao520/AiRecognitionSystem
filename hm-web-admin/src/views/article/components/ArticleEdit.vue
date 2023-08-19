@@ -2,6 +2,8 @@
 import { ref } from 'vue'
 import ChannelSelect from './ChannelSelect.vue'
 import { Plus } from '@element-plus/icons-vue'
+import { QuillEditor } from '@vueup/vue-quill'
+import '@vueup/vue-quill/dist/vue-quill.snow.css'
 
 const visibleDrawer = ref(false)
 //默认数据
@@ -68,7 +70,13 @@ defineExpose({ open })
         </el-upload>
       </el-form-item>
       <el-form-item label="文章内容" prop="content">
-        <div class="editor">富文本编辑器</div>
+        <div class="editor">
+          <quill-editor
+            v-model:content="formModel.content"
+            content-type="html"
+            theme="snow"
+          ></quill-editor>
+        </div>
       </el-form-item>
       <el-form-item>
         <el-button type="primary">发布</el-button>
@@ -103,6 +111,12 @@ defineExpose({ open })
       height: 178px;
       text-align: center;
     }
+  }
+}
+.editor {
+  width: 100%;
+  :deep(.ql-editor) {
+    min-height: 200px;
   }
 }
 </style>
