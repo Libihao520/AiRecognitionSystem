@@ -4,6 +4,26 @@ import ChannelSelect from './ChannelSelect.vue'
 import { Plus } from '@element-plus/icons-vue'
 import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
+import { artPublishService } from '@/api/article'
+
+// 提交
+const emit = defineEmits(['success'])
+const onPublish = async (state) => {
+  formModel.value.state = state
+  const fd = new FormData()
+  for (let key in formModel.value) {
+    fd.append(key, formModel.value[key])
+  }
+  if (formModel.value.id) {
+    // 编辑
+    console.log('编辑操作')
+  } else {
+    await artPublishService(fd)
+    ElMessage.success('添加成功')
+    visibleDrawer.value = false
+    emit('success', 'add')
+  }
+}
 
 const visibleDrawer = ref(false)
 //默认数据
@@ -21,9 +41,12 @@ const formModel = ref({
 //图片上传
 const imgUrl = ref('')
 const onSelectFile = (uploadFile) => {
+  // 图片回显
   imgUrl.value = URL.createObjectURL(uploadFile.raw)
+  // 立刻将图片对象，存入 formModel.value.cover_img 将来用于提交
+  formModel.value.cover_img = uploadFile.raw
 }
-
+const editorRef = ref()
 const open = (row) => {
   visibleDrawer.value = true
   console.log(row)
@@ -35,6 +58,8 @@ const open = (row) => {
     formModel.value = {
       ...defaultForm
     }
+    imgUrl.value = ''
+    editorRef.value.setHTML('')
   }
 }
 defineExpose({ open })
@@ -72,6 +97,7 @@ defineExpose({ open })
       <el-form-item label="文章内容" prop="content">
         <div class="editor">
           <quill-editor
+            ref="editorRef"
             v-model:content="formModel.content"
             content-type="html"
             theme="snow"
@@ -79,8 +105,8 @@ defineExpose({ open })
         </div>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary">发布</el-button>
-        <el-button type="info">草稿</el-button>
+        <el-button @click="onPublish('已发布')" type="primary">发布</el-button>
+        <el-button @click="onPublish('草稿')" type="info">草稿</el-button>
       </el-form-item>
     </el-form>
   </el-drawer>
