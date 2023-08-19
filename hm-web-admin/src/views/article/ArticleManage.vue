@@ -49,6 +49,10 @@ const onReset = () => {
   params.value.pagenum = 1
   getArticleList()
 }
+// 添加
+const onAddArticle = () => {
+  visibleDrawer.value = true
+}
 //编辑
 const onEditArticle = (row) => {
   console.log(row)
@@ -57,10 +61,15 @@ const onEditArticle = (row) => {
 const onDeleteArticle = (row) => {
   console.log(row)
 }
+const visibleDrawer = ref(false)
 </script>
 <template>
   <page-container title="文章管理">
-    <template #extra><el-button>添加文章</el-button></template>
+    <template #extra
+      ><el-button type="primary" @click="onAddArticle"
+        >添加文章</el-button
+      ></template
+    >
     <el-form inline>
       <el-form-item label="文章分类："
         ><channel-select v-model="params.cate_id"></channel-select
@@ -123,6 +132,10 @@ const onDeleteArticle = (row) => {
       @current-change="onCurrentChange"
       style="margin-top: 20px"
     />
+    <!-- 抽屉 -->
+    <el-drawer v-model="visibleDrawer" title="大标题" size="50%">
+      <span>hi there</span></el-drawer
+    >
   </page-container>
 </template>
 <style lang="scss" scoped></style>
