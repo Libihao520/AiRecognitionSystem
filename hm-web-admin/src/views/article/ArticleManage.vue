@@ -4,7 +4,7 @@ import { ref } from 'vue'
 import { artGetListService } from '../../api/article'
 import ChannelSelect from './components/ChannelSelect.vue'
 import { formatTime } from '@/utils/format.js'
-import ArticleEdit from '../../components/ArticleEdit.vue'
+import ArticleEdit from './components/ArticleEdit.vue'
 
 const articleList = ref([]) //文章列表
 const total = ref(0) //总条数
