@@ -3,6 +3,8 @@ using EFCoreMigrations;
 using Interface;
 using Model.Dto.photo;
 using Model.Other;
+using RestSharp;
+using RestSharp.Serializers.NewtonsoftJson;
 
 namespace Service;
 
@@ -22,19 +24,23 @@ public class PhotoService:IPhotoService
         string base64 = po.photo.Substring(po.photo.IndexOf(',') + 1);
         byte[] data = Convert.FromBase64String(base64);
         ByteArrayContent bytes = new ByteArrayContent(data);
+        MemoryStream stream = new MemoryStream(data);
+
         
-        var client = new HttpClient();
-        var request = new HttpRequestMessage(HttpMethod.Post, "http://127.0.0.1:8000/detect");
-        var content = new MultipartFormDataContent();
-        content.Add(bytes, "file_list", "filename.png");
-        content.Add(new StringContent("皮卡丘"), "model_name");
-        content.Add(new StringContent("True"), "download_image");
-        content.Add(new StringContent("640"), "img_size");
-        request.Content = content;
-        var response = await client.SendAsync(request);
-        response.EnsureSuccessStatusCode();
-        Console.WriteLine(await response.Content.ReadAsStringAsync());
-       
-        return new PageInfo();
+
+        var client = new RestClient("http://127.0.0.1:8005/detect");
+        client.UseNewtonsoftJson();
+        var request = new RestRequest();
+        request.Method = Method.Post;
+        request.AddFile("file_list", stream.ToArray(), "filename.png");
+        request.AddParameter("model_name", "皮卡丘");
+        request.AddParameter("download_image", "True");
+        var response = await client.ExecuteAsync<PhotoRes>(request);
+
+
+        var pageInfo = new PageInfo();
+        pageInfo.Total = 1;
+        pageInfo.Data = response.Data.Image_Base64;
+        return pageInfo;
     }
 }

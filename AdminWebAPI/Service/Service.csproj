@@ -9,6 +9,8 @@
     <ItemGroup>
       <PackageReference Include="AutoMapper" Version="11.0.1" />
       <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.5" />
+      <PackageReference Include="RestSharp" Version="108.0.3" />
+      <PackageReference Include="RestSharp.Serializers.NewtonsoftJson" Version="108.0.3" />
     </ItemGroup>
 
     <ItemGroup>
