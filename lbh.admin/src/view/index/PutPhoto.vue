@@ -9,21 +9,21 @@ const onSelectFile = (uploadFile) => {
   const reader = new FileReader();
   reader.readAsDataURL(uploadFile.raw);
   reader.onload = () => {
-    imgUrl.value = reader.result;
+  imgUrl.value = reader.result;
   };
 };
-
+//发送请求
 const onUpdateAvatar = async () => {
   // 发送请求更新头像
-  await PutPhotoService(imgUrl.value);
-  // userStore 重新渲染
-  await userStore.getUser();
+  const res =await PutPhotoService(imgUrl.value);
+  console.log(res.data)
+  imgUrl.value = res.data;
   // 提示用户
-  ElMessage.success("头像更新成功");
+  ElMessage.success("识别成功");
 };
 </script>
 <template>
-  <page-container title="图片上传">
+  <page-container title="AI识别">
     <el-upload
       ref="uploadRef"
       :auto-upload="false"

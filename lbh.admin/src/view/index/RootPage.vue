@@ -65,7 +65,7 @@ const handleSelect = (index: string) => {
                   <el-icon>
                     <list />
                   </el-icon>
-                  <span>上传图片</span>
+                  <span>AI识别</span>
                 </template>
               </el-menu-item>
               <TreeMenuVue :list="res"></TreeMenuVue>
