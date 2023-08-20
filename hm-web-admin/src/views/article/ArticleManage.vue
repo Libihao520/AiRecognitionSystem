@@ -1,7 +1,7 @@
 <script setup>
 import { Delete, Edit } from '@element-plus/icons-vue'
 import { ref } from 'vue'
-import { artGetListService } from '../../api/article'
+import { artGetListService, artDelService } from '../../api/article'
 import ChannelSelect from './components/ChannelSelect.vue'
 import { formatTime } from '@/utils/format.js'
 import ArticleEdit from './components/ArticleEdit.vue'
@@ -60,8 +60,15 @@ const onEditArticle = (row) => {
   articleEditRef.value.open(row)
 }
 //删除
-const onDeleteArticle = (row) => {
-  console.log(row)
+const onDeleteArticle = async (row) => {
+  await ElMessageBox.confirm('你确认删除该文章信息吗？', '温馨提示', {
+    type: 'warning',
+    confirmButtonText: '确认',
+    cancelButtonText: '取消'
+  })
+  await artDelService(row.id)
+  ElMessage({ type: 'success', message: '删除成功' })
+  getArticleList()
 }
 // 添加或者编辑 成功的回调
 const onSuccess = (type) => {

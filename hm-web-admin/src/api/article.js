@@ -21,3 +21,6 @@ export const artGetDetailService = (id) =>
   request.get('/my/article/info', { params: { id } })
 //编辑文章
 export const artEditService = (data) => request.put('/my/article/info', data)
+//删除文章
+export const artDelService = (id) =>
+  request.delete('my/article/info', { params: { id } })
