@@ -4,7 +4,7 @@ import DeskTop from '../view/index/DeskTop.vue'
 import RootPage from '../view/index/RootPage.vue'
 import MenuManager from '../view/admin/menu/MenuManager.vue'
 import MenuManager2 from '../view/admin/menu/MenuManager2.vue'
-import UpdatePhoto  from '../view/index/UpdatePhoto.vue'
+import PutPhoto  from '../view/index/PutPhoto.vue'
 import Tool from '../global'
 import { UserInfo } from '../../src/view/index/class/UserInfo'
 const router = createRouter({
@@ -26,7 +26,7 @@ const router = createRouter({
                         name: "", path: "/MenuManager2", component: MenuManager2
                     },
                     {
-                        name: "", path: "/UpdatePhoto", component: UpdatePhoto
+                        name: "", path: "/PutPhoto", component: PutPhoto
                     }
                 ]
         }

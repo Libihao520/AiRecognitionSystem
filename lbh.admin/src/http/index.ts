@@ -28,3 +28,9 @@ export const delfzzjtable = (id) => {
     instance.defaults.headers.common['Authorization']="Bearer "+localStorage["token"];
     return instance.delete(http + "/FzZj/delTable",{params:{id}});
 }
+//上传图片
+export const PutPhotoService = (photo) =>
+{
+    instance.defaults.headers.common['Authorization']="Bearer "+localStorage["token"];
+    return instance.put(http + "/Photo/PutPhoto",{photo});
+}

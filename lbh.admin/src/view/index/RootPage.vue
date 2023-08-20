@@ -60,7 +60,7 @@ const handleSelect = (index: string) => {
                   <span>表单2</span>
                 </template>
               </el-menu-item>
-              <el-menu-item index='/UpdatePhoto'>
+              <el-menu-item index='/PutPhoto'>
                 <template #title>
                   <el-icon>
                     <list />
