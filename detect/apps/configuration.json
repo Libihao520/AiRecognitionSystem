@@ -1,0 +1,9 @@
+{
+    "bw": 100,
+    "delay": "10ms",
+    "jitter": null,
+    "loss": 0,
+    "max_queue_size": null,
+    "speedup": 0,
+    "use_htb": true
+}
