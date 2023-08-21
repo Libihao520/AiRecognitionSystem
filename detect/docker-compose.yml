@@ -1,0 +1,33 @@
+version: '3.3'
+services:
+  plate:
+    image: "nathanmo/plate_no:v2"
+    restart: always
+    environment:
+      - TZ=Asia/Shanghai
+    platform: "linux/amd64"
+    deploy: 
+      resources:
+        limits:
+          cpus: '4'
+          memory: 20000M
+  core-api:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    command: python server.py --host 0.0.0.0
+    restart: always
+    volumes:
+      - "./apps:/apps"
+    ports:
+      - 8005:8005
+    environment:
+      - TZ=Asia/Shanghai
+    depends_on:
+      - plate
+    deploy: 
+      resources:
+        limits:
+          cpus: '4'
+          memory: 20000M
+    platform: "linux/amd64"
