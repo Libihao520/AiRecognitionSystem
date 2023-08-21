@@ -29,8 +29,8 @@ export const delfzzjtable = (id) => {
     return instance.delete(http + "/FzZj/delTable",{params:{id}});
 }
 //上传图片
-export const PutPhotoService = (photo) =>
+export const PutPhotoService = (photo,name) =>
 {
     instance.defaults.headers.common['Authorization']="Bearer "+localStorage["token"];
-    return instance.put(http + "/Photo/PutPhoto",{photo});
+    return instance.put(http + "/Photo/PutPhoto",{photo,name});
 }

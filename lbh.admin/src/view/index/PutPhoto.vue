@@ -12,10 +12,11 @@ const onSelectFile = (uploadFile) => {
   imgUrl.value = reader.result;
   };
 };
+const name = ref("皮卡丘")
 //发送请求
 const onUpdateAvatar = async () => {
-  // 发送请求更新头像
-  const res =await PutPhotoService(imgUrl.value);
+  // 上传图片
+  const res =await PutPhotoService(imgUrl.value,name.value);
   console.log(res.data)
   imgUrl.value = res.data;
   // 提示用户
@@ -24,6 +25,14 @@ const onUpdateAvatar = async () => {
 </script>
 <template>
   <page-container title="AI识别">
+    <el-form inline>
+      <el-form-item label="选择模型：">
+        <el-select v-model="name" >
+          <el-option label="皮卡丘" value="皮卡丘"></el-option>
+          <el-option label="木头运输" value="木头运输"></el-option>
+        </el-select>
+      </el-form-item>
+    </el-form>
     <el-upload
       ref="uploadRef"
       :auto-upload="false"
