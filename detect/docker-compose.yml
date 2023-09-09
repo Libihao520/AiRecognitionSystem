@@ -9,7 +9,7 @@ services:
     deploy: 
       resources:
         limits:
-          cpus: '4'
+          cpus: '1'
           memory: 20000M
   core-api:
     build:
@@ -28,6 +28,6 @@ services:
     deploy: 
       resources:
         limits:
-          cpus: '4'
+          cpus: '1'
           memory: 20000M
     platform: "linux/amd64"
