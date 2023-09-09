@@ -15,7 +15,9 @@ builder.Register();
 //注入MyDbcontext
 builder.Services.AddDbContext<MyDbContext>(p =>
 {
-    p.UseSqlServer(builder.Configuration.GetConnectionString("SQL"));
+    // p.UseSqlServer(builder.Configuration.GetConnectionString("SQL"));
+    p.UseMySql(builder.Configuration.GetConnectionString("MySQL"),new MySqlServerVersion(new Version(5,7,18)));
+
 });
 
 var app = builder.Build();

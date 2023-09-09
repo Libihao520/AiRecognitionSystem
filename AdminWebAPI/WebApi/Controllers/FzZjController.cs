@@ -11,7 +11,7 @@ namespace WebApi.Controllers;
 
 [Route("api/[controller]/[action]")]
 [ApiController]
-// [Authorize]
+[Authorize]
 public class FzZjController :ControllerBase
 {
     private IFzTbService _fzTbService;
